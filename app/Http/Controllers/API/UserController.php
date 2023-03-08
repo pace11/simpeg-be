@@ -31,11 +31,27 @@ class UserController extends ResponseController
     public function login(Request $request) {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user(); 
-            $success['token'] = $user->createToken('MyApp')->accessToken; 
-            $success['expires_at'] = $user->createToken('MyApp')->token->expires_at;
+            $user_token = $user->createToken('MyApp');
+            $success['token'] = $user_token->accessToken; 
+            $success['expires_at'] = $user_token->token->expires_at;
 
-            return $this->sendResponse($success, 'login success');
+            return $this->sendResponse($success, 'Login success');
         } 
+
+        return $this->sendError('Unauthorized', false, 401);
+    }
+
+    public function logout() {
+        if(Auth::guard('api')->check()){
+            $accessToken = Auth::guard('api')->user()->token();
+
+                \DB::table('oauth_refresh_tokens')
+                    ->where('access_token_id', $accessToken->id)
+                    ->update(['revoked' => true]);
+            $accessToken->revoke();
+
+            return $this->sendResponse(null, 'Logout success');
+        }
 
         return $this->sendError('Unauthorized', false, 401);
     }
