@@ -56,6 +56,20 @@ class UserController extends ResponseController
         return $this->sendError('Unauthorized', false, 401);
     }
 
+    public function forgotPassword(Request $request) {
+        $user = User::where('email', $request->email)->first();
+        
+        if ($user) {
+            $user_token = $user->createToken('MyApp');
+            $success['token'] = $user_token->accessToken; 
+            $success['expires_at'] = $user_token->token->expires_at;
+
+            return $this->sendResponse($success, 'Token forgot password created');
+        }
+        
+        return $this->sendError('Email not found', false, 404);
+    }
+
     public function me() {
         $user = Auth::guard('api')->user();
         return $this->sendResponse($user, 'Get user success');

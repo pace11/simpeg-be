@@ -5,16 +5,62 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ResponseController as ResponseController;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Str;
+use App\Models\Pegawai;
 use Validator;
 
 class PegawaiController extends ResponseController
 {
-    public function register(Request $request) {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request) {
+        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])->orderBy('updated_at', 'desc')->get();
+        return $this->sendResponse($pegawai, "Fetch pegawai success");
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showById($id) {
+        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])->where('id', $id)->first();
+
+        if (!$pegawai) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse($pegawai, 'Fetch pegawai success');
+    }
+
+    /**
+     * Insert new resource.
+     *
+     * @param  request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email', 
-            'password' => 'required',
+            'nama' => 'required|max:100',
+            'tempat_lahir' => '',
+            'tanggal_lahir' => '',
+            'nip_lama' => '',
+            'nip_baru' => '',
+            'tmt_golongan' => '',
+            'tmt_jabatan' => '',
+            'kepala_sekolah' => '',
+            'pendidikan_terakhir' => '',
+            'jurusan' => '',
+            'tahun_lulus' => '',
+            'pd_pdp_npd' => '',
+            'keterangan' => '',
+            'golongan_id' => 'required',
+            'jabatan_id' => 'required',
+            'agama_id' => 'required',
         ]);
 
         if($validator->fails()){
@@ -22,42 +68,63 @@ class PegawaiController extends ResponseController
         }
 
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
+        $input['id'] = Str::uuid();
+        $pegawai = Pegawai::create($input);
 
-        return $this->sendResponse($user, "Register user success");
+        return $this->sendResponse($pegawai, "Submit pegawai success");
     }
 
-    public function login(Request $request) {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-            $user = Auth::user(); 
-            $user_token = $user->createToken('MyApp');
-            $success['token'] = $user_token->accessToken; 
-            $success['expires_at'] = $user_token->token->expires_at;
+    /**
+     * Modified the specific resource.
+     *
+     * @param  request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateById(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|max:100',
+            'tempat_lahir' => '',
+            'tanggal_lahir' => '',
+            'nip_lama' => '',
+            'nip_baru' => '',
+            'tmt_golongan' => '',
+            'tmt_jabatan' => '',
+            'kepala_sekolah' => '',
+            'pendidikan_terakhir' => '',
+            'jurusan' => '',
+            'tahun_lulus' => '',
+            'pd_pdp_npd' => '',
+            'keterangan' => '',
+            'golongan_id' => 'required',
+            'jabatan_id' => 'required',
+            'agama_id' => 'required',
+        ]);
 
-            return $this->sendResponse($success, 'Login success');
-        } 
-
-        return $this->sendError('Unauthorized', false, 401);
-    }
-
-    public function logout() {
-        if(Auth::guard('api')->check()){
-            $accessToken = Auth::guard('api')->user()->token();
-
-                \DB::table('oauth_refresh_tokens')
-                    ->where('access_token_id', $accessToken->id)
-                    ->update(['revoked' => true]);
-            $accessToken->revoke();
-
-            return $this->sendResponse(null, 'Logout success');
+        if($validator->fails()){
+            return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        return $this->sendError('Unauthorized', false, 401);
+        Pegawai::whereId($id)->update($request->all());
+        $update = Pegawai::where('id', $id)->first();
+
+        return $this->sendResponse($update, "Update pegawai success");
     }
 
-    public function me() {
-        $user = Auth::guard('api')->user();
-        return $this->sendResponse($user, 'Get user success');
+    /**
+     * Remove the specific resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteById($id) {
+        $pegawai = Pegawai::whereId($id)->delete();
+
+        if (!$pegawai) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Delete pegawai success');
     }
+
 }

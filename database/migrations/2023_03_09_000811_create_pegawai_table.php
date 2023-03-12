@@ -14,19 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pegawai', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->string('nama', 100);
-            $table->string('tempat_lahir', 30);
-            $table->date('tanggal_lahir');
-            $table->string('nip_lama', 15);
-            $table->string('nip_baru', 40);
-            $table->date('tmt_golongan');
-            $table->date('tmt_jabatan');
-            $table->enum('pendidikan_terakhir', ['SMP','SMA','SMEA','SMK','D1','D2','D3','D4','S1','S2','S3']);
-            $table->text('jurusan');
-            $table->string('tahun_lulus', 4);
-            $table->enum('pd_pdp_npd', ['PD','PDP','NPD']);
-            $table->text('keterangan');
+            $table->uuid('id')->primary();
+            $table->string('nama', 100)->nullable();
+            $table->string('tempat_lahir', 30)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('nip_lama', 15)->nullable();
+            $table->string('nip_baru', 40)->nullable();
+            $table->date('tmt_golongan')->nullable();
+            $table->date('tmt_jabatan')->nullable();
+            $table->boolean('kepala_sekolah')->nullable();
+            $table->enum('pendidikan_terakhir', ['SMP','SMA','SMEA','SMK','D1','D2','D3','D4','S1','S2','S3'])->nullable();
+            $table->text('jurusan')->nullable();
+            $table->string('tahun_lulus', 4)->nullable();
+            $table->enum('pd_pdp_npd', ['PD','PDP','NPD'])->nullable();
+            $table->text('keterangan')->nullable();
             $table->unsignedInteger('golongan_id');
             $table->unsignedInteger('jabatan_id');
             $table->unsignedInteger('agama_id');

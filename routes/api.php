@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AgamaController;
 use App\Http\Controllers\API\GolonganController;
+use App\Http\Controllers\API\JabatanController;
+use App\Http\Controllers\API\PegawaiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ use App\Http\Controllers\API\GolonganController;
 
 Route::post('register',  [UserController::class, 'register']);
 Route::post('login',  [UserController::class, 'login']);
+Route::post('forgot-password',  [UserController::class, 'forgotPassword']);
 Route::group(['middleware' => 'auth:api'], function() {
 
     // logout / detail user
@@ -38,4 +41,18 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('golongan', [GolonganController::class, 'create']);
     Route::patch('golongan/update/{id}', [GolonganController::class, 'updateById']);
     Route::delete('golongan/delete/{id}', [GolonganController::class, 'deleteById']);
+
+    // jabatan
+    Route::get('jabatan', [JabatanController::class, 'index']);
+    Route::get('jabatan/{id}', [JabatanController::class, 'showById']);
+    Route::post('jabatan', [JabatanController::class, 'create']);
+    Route::patch('jabatan/update/{id}', [JabatanController::class, 'updateById']);
+    Route::delete('jabatan/delete/{id}', [JabatanController::class, 'deleteById']);
+
+    // pegawai
+    Route::get('pegawai', [PegawaiController::class, 'index']);
+    Route::get('pegawai/{id}', [PegawaiController::class, 'showById']);
+    Route::post('pegawai', [PegawaiController::class, 'create']);
+    Route::patch('pegawai/update/{id}', [PegawaiController::class, 'updateById']);
+    Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'deleteById']);
 });

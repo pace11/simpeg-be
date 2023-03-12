@@ -4,10 +4,10 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ResponseController as ResponseController;
-use App\Models\Agama;
+use App\Models\jabatan;
 use Validator;
 
-class AgamaController extends ResponseController
+class JabatanController extends ResponseController
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AgamaController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $agama = Agama::all();
-        return $this->sendResponse($agama, 'Fetch agama success');
+        $jabatan = Jabatan::all();
+        return $this->sendResponse($jabatan, 'Fetch jabatan success');
     }
 
     /**
@@ -26,13 +26,13 @@ class AgamaController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function showById($id) {
-        $agama = Agama::where('id', $id)->first();
+        $jabatan = Jabatan::where('id', $id)->first();
 
-        if (!$agama) {
+        if (!$jabatan) {
             return $this->sendError('Not Found', false, 404);
         }
         
-        return $this->sendResponse($agama, 'Fetch agama success');
+        return $this->sendResponse($jabatan, 'Fetch jabatan success');
     }
 
     /**
@@ -50,9 +50,9 @@ class AgamaController extends ResponseController
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        $create = Agama::create($request->all());
+        $create = Jabatan::create($request->all());
 
-        return $this->sendResponse($create, "Submit agama success");
+        return $this->sendResponse($create, "Submit jabatan success");
     }
 
     /**
@@ -71,10 +71,10 @@ class AgamaController extends ResponseController
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        Agama::whereId($id)->update($request->all());
-        $update = Agama::where('id', $id)->first();
+        Jabatan::whereId($id)->update($request->all());
+        $update = Jabatan::where('id', $id)->first();
 
-        return $this->sendResponse($update, "Update agama success");
+        return $this->sendResponse($update, "Update jabatan success");
     }
 
     /**
@@ -84,12 +84,12 @@ class AgamaController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function deleteById($id) {
-        $agama = Agama::whereId($id)->delete();
+        $jabatan = Jabatan::whereId($id)->delete();
 
-        if (!$agama) {
+        if (!$jabatan) {
             return $this->sendError('Not Found', false, 404);
         }
         
-        return $this->sendResponse(null, 'Delete agama success');
+        return $this->sendResponse(null, 'Delete jabatan success');
     }
 }

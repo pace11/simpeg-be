@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Pegawai extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $table = 'pegawai';
     protected $primaryKey = 'id';
@@ -20,6 +22,7 @@ class Pegawai extends Model
         'nip_baru',
         'tmt_golongan',
         'tmt_jabatan',
+        'kepala_sekolah',
         'pendidikan_terakhir',
         'jurusan',
         'tahun_lulus',
@@ -37,6 +40,14 @@ class Pegawai extends Model
     ];
 
     public $timestamps = true;
+
+    public function golongan() {
+        return $this->belongsTo(Golongan::class, 'golongan_id', 'id');
+    }
+
+    public function jabatan() {
+        return $this->belongsTo(Jabatan::class, 'jabatan_id', 'id');
+    }
 
     public function agama() {
         return $this->belongsTo(Agama::class, 'agama_id', 'id');
