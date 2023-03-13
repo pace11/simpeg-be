@@ -70,6 +70,23 @@ class UserController extends ResponseController
         return $this->sendError('Email not found', false, 404);
     }
 
+    public function updatePassword(Request $request) {
+        $user = Auth::guard('api')->user();
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $update = User::whereId($user->id)->update($input);
+        if($update && Auth::guard('api')->check()){
+            $accessToken = Auth::guard('api')->user()->token();
+
+                \DB::table('oauth_refresh_tokens')
+                    ->where('access_token_id', $accessToken->id)
+                    ->update(['revoked' => true]);
+            $accessToken->revoke();
+
+            return $this->sendResponse(null, 'Change password success');
+        }
+    }
+
     public function me() {
         $user = Auth::guard('api')->user();
         return $this->sendResponse($user, 'Get user success');

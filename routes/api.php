@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     // logout / detail user
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('user/me', [UserController::class, 'me']);
+    Route::post('update-password', [UserController::class, 'updatePassword']);
 
     // Agama
     Route::get('agama', [AgamaController::class, 'index']);
