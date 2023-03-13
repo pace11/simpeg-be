@@ -7,6 +7,9 @@ use App\Http\Controllers\API\ResponseController as ResponseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Pegawai;
+use App\Models\Agama;
+use App\Models\Golongan;
+use App\Models\Jabatan;
 use Validator;
 
 class PegawaiController extends ResponseController
@@ -125,6 +128,24 @@ class PegawaiController extends ResponseController
         }
         
         return $this->sendResponse(null, 'Delete pegawai success');
+    }
+
+    /**
+     * Display specific relation.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function charts() {
+        $agama = Agama::select('title AS name')->withCount('pegawai AS value')->get();
+        $golongan = Golongan::select('title AS name')->withCount('pegawai AS value')->get();
+        $jabatan = Jabatan::select('title AS name')->withCount('pegawai AS value')->get();
+        $charts = [
+            'agama' => $agama,
+            'golongan' => $golongan,
+            'jabatan' => $jabatan,
+        ];
+        
+        return $this->sendResponse($charts, 'Fetch pegawai charts success');
     }
 
 }

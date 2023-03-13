@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
     // pegawai
     Route::get('pegawai', [PegawaiController::class, 'index']);
+    Route::get('pegawai/charts', [PegawaiController::class, 'charts']);
     Route::get('pegawai/{id}', [PegawaiController::class, 'showById']);
     Route::post('pegawai', [PegawaiController::class, 'create']);
     Route::patch('pegawai/update/{id}', [PegawaiController::class, 'updateById']);
