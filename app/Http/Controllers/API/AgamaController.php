@@ -14,8 +14,12 @@ class AgamaController extends ResponseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $agama = Agama::all();
+    public function index(Request $request) {
+        $title = $request->query('title');
+        $agama = Agama::orderBy('updated_at', 'desc')
+                    ->where('title', 'LIKE', '%'.$title.'%')
+                    ->get();
+        
         return $this->sendResponse($agama, 'Fetch agama success');
     }
 

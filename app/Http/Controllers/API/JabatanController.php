@@ -14,8 +14,12 @@ class JabatanController extends ResponseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $jabatan = Jabatan::all();
+    public function index(Request $request) {
+        $title = $request->query('title');
+        $jabatan = Jabatan::orderBy('updated_at', 'desc')
+                    ->where('title', 'LIKE', '%'.$title.'%')
+                    ->get();
+
         return $this->sendResponse($jabatan, 'Fetch jabatan success');
     }
 

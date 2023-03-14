@@ -20,7 +20,12 @@ class PegawaiController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])->orderBy('updated_at', 'desc')->get();
+        $nama = $request->query('nama');
+        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+                    ->orderBy('updated_at', 'desc')
+                    ->where('nama', 'LIKE', '%'.$nama.'%')
+                    ->get();
+
         return $this->sendResponse($pegawai, "Fetch pegawai success");
     }
 

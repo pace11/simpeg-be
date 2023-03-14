@@ -14,8 +14,12 @@ class GolonganController extends ResponseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $agama = Golongan::all();
+    public function index(Request $request) {
+        $title = $request->query('title');
+        $agama = Golongan::orderBy('updated_at', 'desc')
+                    ->where('title', 'LIKE', '%'.$title.'%')
+                    ->get();
+        
         return $this->sendResponse($agama, 'Fetch golongan success');
     }
 
