@@ -16,9 +16,17 @@ class JabatanController extends ResponseController
      */
     public function index(Request $request) {
         $title = $request->query('title');
-        $jabatan = Jabatan::orderBy('updated_at', 'desc')
-                    ->where('title', 'LIKE', '%'.$title.'%')
-                    ->get();
+        $status = $request->query('status');
+
+        if ($status == 'archived') {
+            $jabatan = Jabatan::where('title', 'LIKE', '%'.$title.'%')
+                        ->onlyTrashed()
+                        ->get();
+        } else {
+            $jabatan = Jabatan::orderBy('updated_at', 'desc')
+                        ->where('title', 'LIKE', '%'.$title.'%')
+                        ->get();
+        }
 
         return $this->sendResponse($jabatan, 'Fetch jabatan success');
     }
@@ -79,6 +87,22 @@ class JabatanController extends ResponseController
         $update = Jabatan::where('id', $id)->first();
 
         return $this->sendResponse($update, "Update jabatan success");
+    }
+
+    /**
+     * Restore the specific deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreById($id) {
+        $jabatan = Jabatan::whereId($id)->withTrashed()->restore();
+
+        if (!$jabatan) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Restore jabatan success');
     }
 
     /**

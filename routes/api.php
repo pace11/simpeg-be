@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('agama', [AgamaController::class, 'create']);
     Route::patch('agama/update/{id}', [AgamaController::class, 'updateById']);
     Route::delete('agama/delete/{id}', [AgamaController::class, 'deleteById']);
+    Route::post('agama/restore/{id}', [AgamaController::class, 'restoreById']);
 
     // golongan
     Route::get('golongan', [GolonganController::class, 'index']);
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('golongan', [GolonganController::class, 'create']);
     Route::patch('golongan/update/{id}', [GolonganController::class, 'updateById']);
     Route::delete('golongan/delete/{id}', [GolonganController::class, 'deleteById']);
+    Route::post('golongan/restore/{id}', [GolonganController::class, 'restoreById']);
 
     // jabatan
     Route::get('jabatan', [JabatanController::class, 'index']);
@@ -49,6 +51,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('jabatan', [JabatanController::class, 'create']);
     Route::patch('jabatan/update/{id}', [JabatanController::class, 'updateById']);
     Route::delete('jabatan/delete/{id}', [JabatanController::class, 'deleteById']);
+    Route::post('jabatan/restore/{id}', [JabatanController::class, 'restoreById']);
 
     // pegawai
     Route::get('pegawai', [PegawaiController::class, 'index']);
@@ -57,4 +60,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('pegawai', [PegawaiController::class, 'create']);
     Route::patch('pegawai/update/{id}', [PegawaiController::class, 'updateById']);
     Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'deleteById']);
-});
+    Route::post('pegawai/restore/{id}', [PegawaiController::class, 'restoreById']);
+});              

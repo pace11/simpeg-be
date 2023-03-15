@@ -21,10 +21,19 @@ class PegawaiController extends ResponseController
      */
     public function index(Request $request) {
         $nama = $request->query('nama');
-        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
-                    ->orderBy('updated_at', 'desc')
-                    ->where('nama', 'LIKE', '%'.$nama.'%')
-                    ->get();
+        $status = $request->query('status');
+
+        if ($status == 'archived') {
+            $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+                        ->where('nama', 'LIKE', '%'.$nama.'%')
+                        ->onlyTrashed()
+                        ->get();
+        } else {
+            $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+                        ->orderBy('updated_at', 'desc')
+                        ->where('nama', 'LIKE', '%'.$nama.'%')
+                        ->get();
+        }
 
         return $this->sendResponse($pegawai, "Fetch pegawai success");
     }
@@ -133,6 +142,22 @@ class PegawaiController extends ResponseController
         }
         
         return $this->sendResponse(null, 'Delete pegawai success');
+    }
+
+    /**
+     * Restore the specific deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreById($id) {
+        $pegawai = Pegawai::whereId($id)->withTrashed()->restore();
+
+        if (!$pegawai) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Restore pegawai success');
     }
 
     /**

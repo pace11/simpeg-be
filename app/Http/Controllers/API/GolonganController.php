@@ -16,11 +16,19 @@ class GolonganController extends ResponseController
      */
     public function index(Request $request) {
         $title = $request->query('title');
-        $agama = Golongan::orderBy('updated_at', 'desc')
-                    ->where('title', 'LIKE', '%'.$title.'%')
-                    ->get();
+        $status = $request->query('status');
+
+        if ($status == 'archived') {
+            $golongan = Golongan::where('title', 'LIKE', '%'.$title.'%')
+                        ->onlyTrashed()
+                        ->get();
+        } else {
+            $golongan = Golongan::orderBy('updated_at', 'desc')
+                        ->where('title', 'LIKE', '%'.$title.'%')
+                        ->get();
+        }
         
-        return $this->sendResponse($agama, 'Fetch golongan success');
+        return $this->sendResponse($golongan, 'Fetch golongan success');
     }
 
     /**
@@ -79,6 +87,22 @@ class GolonganController extends ResponseController
         $update = Golongan::where('id', $id)->first();
 
         return $this->sendResponse($update, "Update golongan success");
+    }
+
+    /**
+     * Restore the specific deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreById($id) {
+        $golongan = Golongan::whereId($id)->withTrashed()->restore();
+
+        if (!$golongan) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Restore pegawai success');
     }
 
     /**

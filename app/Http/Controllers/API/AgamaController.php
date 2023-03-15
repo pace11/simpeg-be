@@ -16,9 +16,17 @@ class AgamaController extends ResponseController
      */
     public function index(Request $request) {
         $title = $request->query('title');
-        $agama = Agama::orderBy('updated_at', 'desc')
+        $status = $request->query('status');
+
+        if ($status == 'archived') {
+            $agama = Agama::where('title', 'LIKE', '%'.$title.'%')
+                    ->onlyTrashed()
+                    ->get();
+        } else {
+            $agama = Agama::orderBy('updated_at', 'desc')
                     ->where('title', 'LIKE', '%'.$title.'%')
                     ->get();
+        }
         
         return $this->sendResponse($agama, 'Fetch agama success');
     }
@@ -79,6 +87,22 @@ class AgamaController extends ResponseController
         $update = Agama::where('id', $id)->first();
 
         return $this->sendResponse($update, "Update agama success");
+    }
+
+    /**
+     * Restore the specific deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restoreById($id) {
+        $agama = Agama::whereId($id)->withTrashed()->restore();
+
+        if (!$agama) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Restore agama success');
     }
 
     /**
