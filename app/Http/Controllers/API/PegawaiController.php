@@ -30,6 +30,7 @@ class PegawaiController extends ResponseController
                         ->get();
         } else {
             $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+                        ->sortable()
                         ->orderBy('updated_at', 'desc')
                         ->where('nama', 'LIKE', '%'.$nama.'%')
                         ->get();

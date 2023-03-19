@@ -23,7 +23,7 @@ class GolonganController extends ResponseController
                         ->onlyTrashed()
                         ->get();
         } else {
-            $golongan = Golongan::orderBy('updated_at', 'desc')
+            $golongan = Golongan::sortable()->orderBy('updated_at', 'desc')
                         ->where('title', 'LIKE', '%'.$title.'%')
                         ->get();
         }

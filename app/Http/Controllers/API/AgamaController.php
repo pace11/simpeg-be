@@ -23,7 +23,7 @@ class AgamaController extends ResponseController
                     ->onlyTrashed()
                     ->get();
         } else {
-            $agama = Agama::orderBy('updated_at', 'desc')
+            $agama = Agama::sortable()->orderBy('updated_at', 'desc')
                     ->where('title', 'LIKE', '%'.$title.'%')
                     ->get();
         }

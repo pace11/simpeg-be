@@ -23,7 +23,7 @@ class JabatanController extends ResponseController
                         ->onlyTrashed()
                         ->get();
         } else {
-            $jabatan = Jabatan::orderBy('updated_at', 'desc')
+            $jabatan = Jabatan::sortable()->orderBy('updated_at', 'desc')
                         ->where('title', 'LIKE', '%'.$title.'%')
                         ->get();
         }
