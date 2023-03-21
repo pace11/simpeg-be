@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref_type == 'tag' && contains(github.ref_name, 'migration')
     steps:
-      - name: Staging Stage - Deploy via SSH
+      - name: Running only Migration and Seed
         uses: appleboy/ssh-action@master
         with: 
           host: ${{ secrets.HOST }}
@@ -23,11 +23,11 @@ jobs:
           script: |
             cd /var/www/simpeg-be/
             composer run-script startup-project
-  run:
+  run-build:
     runs-on: ubuntu-latest
     if: github.ref_type == 'tag' && contains(github.ref_name, 'staging')
     steps:
-      - name: Staging Stage - Deploy via SSH
+      - name: Running Build without Migration and Seed
         uses: appleboy/ssh-action@master
         with: 
           host: ${{ secrets.HOST }}
