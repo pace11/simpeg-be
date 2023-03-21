@@ -6,12 +6,12 @@ name: Node.js CI
 on:
   push:
     tags:
-      - v1.**
+      - v**
 
 jobs:
-  build:
-
+  run-migration:
     runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' && contains(github.ref_name, 'migration')
     steps:
       - name: Staging Stage - Deploy via SSH
         uses: appleboy/ssh-action@master
@@ -21,6 +21,21 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            ls -la
+            cd /var/www/simpeg-be/
+            composer run-script startup-project
+  run:
+    runs-on: ubuntu-latest
+    if: github.ref_type == 'tag' && contains(github.ref_name, 'staging')
+    steps:
+      - name: Staging Stage - Deploy via SSH
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /var/www/simpeg-be/
+            git pull origin master
 
     
