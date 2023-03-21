@@ -13,12 +13,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Staging Stage
+      - name: Staging Stage - Deploy via SSH
         uses: appleboy/ssh-action@master
         with: 
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
           script: |
             ls -la
 
