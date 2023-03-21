@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ResponseController as ResponseController;
-use App\Models\jabatan;
+use App\Models\Jabatan;
 use Validator;
 
 class JabatanController extends ResponseController
