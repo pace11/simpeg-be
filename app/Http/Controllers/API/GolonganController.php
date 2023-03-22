@@ -64,7 +64,7 @@ class GolonganController extends ResponseController
 
         $create = Golongan::create($request->all());
 
-        return $this->sendResponse($create, "Submit golongan success");
+        return $this->sendResponse($create, "Submit golongan success", 201);
     }
 
     /**

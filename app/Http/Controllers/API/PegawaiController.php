@@ -89,7 +89,7 @@ class PegawaiController extends ResponseController
         $input['id'] = Str::uuid();
         $pegawai = Pegawai::create($input);
 
-        return $this->sendResponse($pegawai, "Submit pegawai success");
+        return $this->sendResponse($pegawai, "Submit pegawai success", 201);
     }
 
     /**

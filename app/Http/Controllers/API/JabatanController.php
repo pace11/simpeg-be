@@ -64,7 +64,7 @@ class JabatanController extends ResponseController
 
         $create = Jabatan::create($request->all());
 
-        return $this->sendResponse($create, "Submit jabatan success");
+        return $this->sendResponse($create, "Submit jabatan success", 201);
     }
 
     /**

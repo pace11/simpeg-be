@@ -64,7 +64,7 @@ class AgamaController extends ResponseController
 
         $create = Agama::create($request->all());
 
-        return $this->sendResponse($create, "Submit agama success");
+        return $this->sendResponse($create, "Submit agama success", 201);
     }
 
     /**
