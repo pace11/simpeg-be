@@ -170,10 +170,12 @@ class PegawaiController extends ResponseController
         $agama = Agama::select('title AS name')->withCount('pegawai AS value')->get();
         $golongan = Golongan::select('title AS name')->withCount('pegawai AS value')->get();
         $jabatan = Jabatan::select('title AS name')->withCount('pegawai AS value')->get();
+        $pegawai = Pegawai::get()->count();
         $charts = [
             'agama' => $agama,
             'golongan' => $golongan,
             'jabatan' => $jabatan,
+            'pegawai' => $pegawai,
         ];
         
         return $this->sendResponse($charts, 'Fetch pegawai charts success');
