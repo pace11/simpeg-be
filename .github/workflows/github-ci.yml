@@ -19,6 +19,7 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd /var/www/simpeg-be/
+            git pull origin master
             composer run-script startup-project
             php artisan key:generate
   run-build:
