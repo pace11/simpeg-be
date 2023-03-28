@@ -7,6 +7,8 @@ use App\Http\Controllers\API\AgamaController;
 use App\Http\Controllers\API\GolonganController;
 use App\Http\Controllers\API\JabatanController;
 use App\Http\Controllers\API\PegawaiController;
+use App\Http\Controllers\API\KeturunanController;
+use App\Http\Controllers\API\PendidikanTerakhirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,22 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('logout', [UserController::class, 'logout']);
     Route::get('user/me', [UserController::class, 'me']);
     Route::post('update-password', [UserController::class, 'updatePassword']);
+
+    // Keturunan
+    Route::get('keturunan', [KeturunanController::class, 'index']);
+    Route::get('keturunan/{id}', [KeturunanController::class, 'showById']);
+    Route::post('keturunan', [KeturunanController::class, 'create']);
+    Route::patch('keturunan/update/{id}', [KeturunanController::class, 'updateById']);
+    Route::delete('keturunan/delete/{id}', [KeturunanController::class, 'deleteById']);
+    Route::post('keturunan/restore/{id}', [KeturunanController::class, 'restoreById']);
+
+    // Pendidikan Terakhir
+    Route::get('pendidikan-terakhir', [PendidikanTerakhirController::class, 'index']);
+    Route::get('pendidikan-terakhir/{id}', [PendidikanTerakhirController::class, 'showById']);
+    Route::post('pendidikan-terakhir', [PendidikanTerakhirController::class, 'create']);
+    Route::patch('pendidikan-terakhir/update/{id}', [PendidikanTerakhirController::class, 'updateById']);
+    Route::delete('pendidikan-terakhir/delete/{id}', [PendidikanTerakhirController::class, 'deleteById']);
+    Route::post('pendidikan-terakhir/restore/{id}', [PendidikanTerakhirController::class, 'restoreById']);
 
     // Agama
     Route::get('agama', [AgamaController::class, 'index']);

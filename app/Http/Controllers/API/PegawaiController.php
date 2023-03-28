@@ -10,6 +10,8 @@ use App\Models\Pegawai;
 use App\Models\Agama;
 use App\Models\Golongan;
 use App\Models\Jabatan;
+use App\Models\Keturunan;
+use App\Models\PendidikanTerakhir;
 use Validator;
 
 class PegawaiController extends ResponseController
@@ -24,12 +26,12 @@ class PegawaiController extends ResponseController
         $status = $request->query('status');
 
         if ($status == 'archived') {
-            $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+            $pegawai = Pegawai::with(['pendidikan_terakhir', 'keturunan', 'golongan', 'jabatan', 'agama'])
                         ->where('nama', 'LIKE', '%'.$nama.'%')
                         ->onlyTrashed()
                         ->get();
         } else {
-            $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])
+            $pegawai = Pegawai::with(['pendidikan_terakhir', 'keturunan', 'golongan', 'jabatan', 'agama'])
                         ->sortable()
                         ->orderBy('updated_at', 'desc')
                         ->where('nama', 'LIKE', '%'.$nama.'%')
@@ -46,7 +48,7 @@ class PegawaiController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function showById($id) {
-        $pegawai = Pegawai::with(['golongan', 'jabatan', 'agama'])->where('id', $id)->first();
+        $pegawai = Pegawai::with(['pendidikan_terakhir', 'keturunan', 'golongan', 'jabatan', 'agama'])->where('id', $id)->first();
 
         if (!$pegawai) {
             return $this->sendError('Not Found', false, 404);
@@ -71,11 +73,11 @@ class PegawaiController extends ResponseController
             'tmt_golongan' => '',
             'tmt_jabatan' => '',
             'kepala_sekolah' => '',
-            'pendidikan_terakhir' => '',
             'jurusan' => '',
             'tahun_lulus' => '',
-            'pd_pdp_npd' => '',
             'keterangan' => '',
+            'pendidikan_terakhir_id' => 'required',
+            'keturunan_id' => 'required',
             'golongan_id' => 'required',
             'jabatan_id' => 'required',
             'agama_id' => 'required',
@@ -109,11 +111,11 @@ class PegawaiController extends ResponseController
             'tmt_golongan' => '',
             'tmt_jabatan' => '',
             'kepala_sekolah' => '',
-            'pendidikan_terakhir' => '',
             'jurusan' => '',
             'tahun_lulus' => '',
-            'pd_pdp_npd' => '',
             'keterangan' => '',
+            'pendidikan_terakhir_id' => 'required',
+            'keturunan_id' => 'required',
             'golongan_id' => 'required',
             'jabatan_id' => 'required',
             'agama_id' => 'required',
@@ -170,11 +172,15 @@ class PegawaiController extends ResponseController
         $agama = Agama::select('title AS name')->withCount('pegawai AS value')->get();
         $golongan = Golongan::select('title AS name')->withCount('pegawai AS value')->get();
         $jabatan = Jabatan::select('title AS name')->withCount('pegawai AS value')->get();
+        $keturunan = Keturunan::select('title AS name')->withCount('pegawai AS value')->get();
+        $pendidikan_terakhir = PendidikanTerakhir::select('title AS name')->withCount('pegawai AS value')->get();
         $pegawai = Pegawai::get()->count();
         $charts = [
             'agama' => $agama,
             'golongan' => $golongan,
             'jabatan' => $jabatan,
+            'keturunan' => $keturunan,
+            'pendidikan_terakhir' => $pendidikan_terakhir,
             'pegawai' => $pegawai,
         ];
         

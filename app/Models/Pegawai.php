@@ -24,11 +24,11 @@ class Pegawai extends Model
         'tmt_golongan',
         'tmt_jabatan',
         'kepala_sekolah',
-        'pendidikan_terakhir',
         'jurusan',
         'tahun_lulus',
-        'pd_pdp_npd',
         'keterangan',
+        'pendidikan_terakhir_id',
+        'keturunan_id',
         'golongan_id',
         'jabatan_id',
         'agama_id',
@@ -43,6 +43,14 @@ class Pegawai extends Model
     public $timestamps = true;
 
     public $sortable = ['nama'];
+
+    public function pendidikan_terakhir() {
+        return $this->belongsTo(PendidikanTerakhir::class, 'pendidikan_terakhir_id', 'id');
+    }
+
+    public function keturunan() {
+        return $this->belongsTo(Keturunan::class, 'keturunan_id', 'id');
+    }
 
     public function golongan() {
         return $this->belongsTo(Golongan::class, 'golongan_id', 'id');

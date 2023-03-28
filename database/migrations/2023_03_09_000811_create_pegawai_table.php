@@ -23,11 +23,11 @@ return new class extends Migration
             $table->date('tmt_golongan')->nullable();
             $table->date('tmt_jabatan')->nullable();
             $table->boolean('kepala_sekolah')->nullable();
-            $table->enum('pendidikan_terakhir', ['SMP','SMA','SMEA','SMK','D1','D2','D3','D4','S1','S2','S3'])->nullable();
             $table->text('jurusan')->nullable();
             $table->string('tahun_lulus', 4)->nullable();
-            $table->enum('pd_pdp_npd', ['PD','PDP','NPD'])->nullable();
             $table->text('keterangan')->nullable();
+            $table->unsignedInteger('pendidikan_terakhir_id');
+            $table->unsignedInteger('keturunan_id');
             $table->unsignedInteger('golongan_id');
             $table->unsignedInteger('jabatan_id');
             $table->unsignedInteger('agama_id');
@@ -36,6 +36,8 @@ return new class extends Migration
         });
 
         Schema::table('pegawai', function (Blueprint $table) {
+            $table->foreign('pendidikan_terakhir_id')->references('id')->on('pendidikan_terakhir');
+            $table->foreign('keturunan_id')->references('id')->on('keturunan');
             $table->foreign('golongan_id')->references('id')->on('golongan');
             $table->foreign('jabatan_id')->references('id')->on('jabatan');
             $table->foreign('agama_id')->references('id')->on('agama');
