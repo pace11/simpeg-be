@@ -4,9 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\AgamaController;
+use App\Http\Controllers\API\ProdukController;
 use App\Http\Controllers\API\GolonganController;
 use App\Http\Controllers\API\JabatanController;
 use App\Http\Controllers\API\PegawaiController;
+use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\KeturunanController;
 use App\Http\Controllers\API\PendidikanTerakhirController;
 
@@ -24,6 +26,11 @@ use App\Http\Controllers\API\PendidikanTerakhirController;
 Route::post('register',  [UserController::class, 'register']);
 Route::post('login',  [UserController::class, 'login']);
 Route::post('forgot-password',  [UserController::class, 'forgotPassword']);
+
+// produk
+Route::get('produk', [ProdukController::class, 'index']);
+Route::get('produk/{id}', [ProdukController::class, 'showById']);
+
 Route::group(['middleware' => 'auth:api'], function() {
 
     // logout / detail user
@@ -79,4 +86,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('pegawai/update/{id}', [PegawaiController::class, 'updateById']);
     Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'deleteById']);
     Route::post('pegawai/restore/{id}', [PegawaiController::class, 'restoreById']);
+
+    // pesanna
+    Route::get('pesanan', [PesananController::class, 'index']);
+    Route::get('pesanan/cart', [PesananController::class, 'cart']);
+    Route::post('pesanan/cart/add', [PesananController::class, 'addCart']);
+    Route::get('pesanan/cart/count', [PesananController::class, 'countCart']);
+    Route::post('pesanan/cart/process', [PesananController::class, 'processCart']);
+    Route::post('pesanan/finish', [PesananController::class, 'finish']);
 });              
