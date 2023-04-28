@@ -125,6 +125,22 @@ class PesananController extends ResponseController
     }
 
     /**
+     * Remove the specific resource.
+     *
+     * @param  string[UUID]  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteCartById($id) {
+        $pesanan = Pesanan::whereId($id)->forceDelete();
+
+        if (!$pesanan) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse(null, 'Delete pesanan cart success');
+    }
+
+    /**
      * Process finish.
      *
      * @return \Illuminate\Http\Response

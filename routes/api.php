@@ -87,11 +87,12 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'deleteById']);
     Route::post('pegawai/restore/{id}', [PegawaiController::class, 'restoreById']);
 
-    // pesanna
+    // pesanan
     Route::get('pesanan', [PesananController::class, 'index']);
     Route::get('pesanan/cart', [PesananController::class, 'cart']);
-    Route::post('pesanan/cart/add', [PesananController::class, 'addCart']);
     Route::get('pesanan/cart/count', [PesananController::class, 'countCart']);
+    Route::post('pesanan/cart/add', [PesananController::class, 'addCart']);
     Route::post('pesanan/cart/process', [PesananController::class, 'processCart']);
     Route::post('pesanan/finish', [PesananController::class, 'finish']);
+    Route::delete('pesanan/cart/delete/{id}', [PesananController::class, 'deleteCartById']);
 });              
