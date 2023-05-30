@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ResponseController as ResponseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 use App\Models\User;
 use Validator;
 
@@ -29,7 +30,16 @@ class UserController extends ResponseController
     }
 
     public function login(Request $request) {
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email', 
+            'password' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Error validation', $validator->errors(), 400);       
+        }
+
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'auth_type' => 'auth_app'])){ 
             $user = Auth::user(); 
             $user_token = $user->createToken('MyApp');
             $success['token'] = $user_token->accessToken; 
@@ -37,6 +47,51 @@ class UserController extends ResponseController
 
             return $this->sendResponse($success, 'Login success');
         } 
+
+        return $this->sendError('Unauthorized', false, 401);
+    }
+
+    public function loginWithGmail(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => '',
+            'email' => 'required|email',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Error validation', $validator->errors(), 400);       
+        }
+
+        $user = User::where(['email' => $request->email, 'auth_type' => 'auth_gmail'])->first();
+
+        if($user){
+            $findActiveToken = \DB::table('oauth_access_tokens')
+                                ->where('user_id', $user->id)
+                                ->where('revoked', 0)
+                                ->exists();
+
+            if ($findActiveToken) {
+                return $this->sendError('Not Modified', false, 304);
+            }
+
+            $user_token = $user->createToken('MyApp');
+            $success['token'] = $user_token->accessToken; 
+            $success['expires_at'] = $user_token->token->expires_at;
+
+            return $this->sendResponse($success, 'Login success');
+        } else {
+            $input = $request->all();
+            $input['auth_type'] = 'auth_gmail';
+            $created = User::create($input);
+
+            if ($created) {
+                $userCreated = User::where(['email' => $request->email, 'auth_type' => 'auth_gmail'])->first();
+                $user_token = $userCreated->createToken('MyApp');
+                $success['token'] = $user_token->accessToken; 
+                $success['expires_at'] = $user_token->token->expires_at;
+
+                return $this->sendResponse($success, 'Login success');
+            }
+        }
 
         return $this->sendError('Unauthorized', false, 401);
     }

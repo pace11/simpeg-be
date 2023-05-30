@@ -23,15 +23,17 @@ use App\Http\Controllers\API\PendidikanTerakhirController;
 |
 */
 
+// authorization & registration
 Route::post('register',  [UserController::class, 'register']);
 Route::post('login',  [UserController::class, 'login']);
+Route::post('login-with-gmail',  [UserController::class, 'loginWithGmail']);
 Route::post('forgot-password',  [UserController::class, 'forgotPassword']);
 
 // produk
 Route::get('produk', [ProdukController::class, 'index']);
 Route::get('produk/{id}', [ProdukController::class, 'showById']);
 
-Route::group(['middleware' => 'auth:api'], function() {
+Route::middleware('auth:api')->group(function () {
 
     // logout / detail user
     Route::get('logout', [UserController::class, 'logout']);
