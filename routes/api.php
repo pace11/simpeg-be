@@ -11,6 +11,7 @@ use App\Http\Controllers\API\PegawaiController;
 use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\KeturunanController;
 use App\Http\Controllers\API\PendidikanTerakhirController;
+use App\Http\Controllers\API\SpotifyNotifController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::post('forgot-password',  [UserController::class, 'forgotPassword']);
 // produk
 Route::get('produk', [ProdukController::class, 'index']);
 Route::get('produk/{id}', [ProdukController::class, 'showById']);
+
+// spotify notif w/o auth
+Route::get('spotify-notif/active', [SpotifyNotifController::class, 'checkActive']);
 
 Route::group(['middleware' => 'auth:api'], function() {
 
@@ -95,4 +99,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('pesanan/cart/process', [PesananController::class, 'processCart']);
     Route::post('pesanan/finish', [PesananController::class, 'finish']);
     Route::delete('pesanan/cart/delete/{id}', [PesananController::class, 'deleteCartById']);
+
+    // spotify notif
+    Route::get('spotify-notif', [SpotifyNotifController::class, 'index']);
+    Route::post('spotify-notif', [SpotifyNotifController::class, 'create']);
 });              
