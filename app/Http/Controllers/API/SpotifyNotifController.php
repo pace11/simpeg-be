@@ -40,14 +40,15 @@ class SpotifyNotifController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function showById($id) {
-        $agama = Golongan::where('id', $id)->first();
+        $spotify_notif = SpotifyNotif::where('id', $id)->first();
 
-        if (!$agama) {
+        if (!$spotify_notif) {
             return $this->sendError('Not Found', false, 404);
         }
         
-        return $this->sendResponse($agama, 'Fetch golongan success');
+        return $this->sendResponse($spotify_notif, 'Fetch spotify notif success');
     }
+    
 
     /**
      * Insert new resource.
@@ -59,6 +60,7 @@ class SpotifyNotifController extends ResponseController
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'description' => '',
+            'plan' => '',
             'member_count' => '',
             'expires_at' => 'required'
         ]);
@@ -84,16 +86,20 @@ class SpotifyNotifController extends ResponseController
     public function updateById(Request $request, $id) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'description' => '',
+            'plan' => '',
+            'member_count' => '',
+            'expires_at' => 'required'
         ]);
 
         if($validator->fails()){
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        Golongan::whereId($id)->update($request->all());
-        $update = Golongan::where('id', $id)->first();
+        SpotifyNotif::whereId($id)->update($request->all());
+        $update = SpotifyNotif::where('id', $id)->first();
 
-        return $this->sendResponse($update, "Update golongan success");
+        return $this->sendResponse($update, "Update spotify notif success");
     }
 
     /**
@@ -126,5 +132,23 @@ class SpotifyNotifController extends ResponseController
         }
         
         return $this->sendResponse(null, 'Delete golongan success');
+    }
+
+    /**
+     * Remove the specific resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deactivateById($id) {
+        $spotify_notif = SpotifyNotif::whereId($id)->update(array('status' => 'inactive'));
+
+        if (!$spotify_notif) {
+            return $this->sendError('Not Found', false, 404);
+        }
+
+        $get = SpotifyNotif::whereId($id)->first();
+        
+        return $this->sendResponse($get, 'Deactivate spotify notif success');
     }
 }

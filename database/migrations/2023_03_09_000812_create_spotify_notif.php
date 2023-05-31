@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 100)->nullable();
             $table->text('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->integer('plan')->nullable();
             $table->integer('member_count')->nullable();
             $table->date('expires_at')->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

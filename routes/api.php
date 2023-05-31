@@ -103,4 +103,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     // spotify notif
     Route::get('spotify-notif', [SpotifyNotifController::class, 'index']);
     Route::post('spotify-notif', [SpotifyNotifController::class, 'create']);
-});              
+    Route::get('spotify-notif/{id}', [SpotifyNotifController::class, 'showById']);
+    Route::patch('spotify-notif/update/{id}', [SpotifyNotifController::class, 'updateById']);
+    Route::post('spotify-notif/deactivate/{id}', [SpotifyNotifController::class, 'deactivateById']);
+});

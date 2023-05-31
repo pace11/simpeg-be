@@ -14,7 +14,7 @@ class SpotifyNotif extends Model
     protected $table = 'spotify_notif';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id', 'title', 'description', 'member_count', 'expires_at'
+        'id', 'title', 'description', 'plan', 'member_count', 'expires_at'
     ];
     protected $guard = [
         'created_at', 'updated_at'
