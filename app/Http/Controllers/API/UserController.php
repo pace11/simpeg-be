@@ -13,7 +13,10 @@ class UserController extends ResponseController
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email', 
+            'email' => 'required|email',
+            'dob' => '',
+            'phone' => '',
+            'hobby' => '', 
             'password' => 'required',
         ]);
 

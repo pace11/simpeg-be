@@ -12,6 +12,9 @@ use App\Http\Controllers\API\PesananController;
 use App\Http\Controllers\API\KeturunanController;
 use App\Http\Controllers\API\PendidikanTerakhirController;
 use App\Http\Controllers\API\SpotifyNotifController;
+use App\Http\Controllers\API\PostsController;
+use App\Http\Controllers\API\LikesController;
+use App\Http\Controllers\API\RepliesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,4 +109,22 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::get('spotify-notif/{id}', [SpotifyNotifController::class, 'showById']);
     Route::patch('spotify-notif/update/{id}', [SpotifyNotifController::class, 'updateById']);
     Route::post('spotify-notif/deactivate/{id}', [SpotifyNotifController::class, 'deactivateById']);
+
+    // Posts
+    Route::get('posts', [PostsController::class, 'index']);
+    Route::post('post', [PostsController::class, 'create']);
+    Route::get('post/{id}', [PostsController::class, 'showById']);
+    Route::patch('post/update/{id}', [PostsController::class, 'updateById']);
+    Route::delete('post/delete/{id}', [PostsController::class, 'deleteById']);
+
+    // Likes
+    Route::post('likes/post/{id}', [LikesController::class, 'create']);
+    Route::get('likes/post/{id}', [LikesController::class, 'showById']);
+    Route::post('unlikes/post/{id}', [LikesController::class, 'deleteById']);
+
+    // Replies
+    Route::post('replies/post/{id}', [RepliesController::class, 'create']);
+    Route::get('replies/post/{id}', [RepliesController::class, 'showById']);
+    Route::delete('replies/delete/{id}', [RepliesController::class, 'deleteById']);
+
 });

@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->date('dob')->nullable();
-            $table->string('phone', 13)->nullable();
-            $table->text('hobby')->nullable();
-            $table->rememberToken();
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('description'); 
+            $table->unsignedBigInteger('users_id');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
+        });
+
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreign('users_id')->references('id')->on('users');
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('posts');
     }
 };
