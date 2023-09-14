@@ -27,4 +27,10 @@ class Likes extends Model
     public function user() {
         return $this->belongsTo(User::class, 'users_id', 'id');
     }
+
+    public function getIsLikePostAttribute() {
+        $user = Auth::guard('api')->user();
+        $is_like_post = $this->user->id == $user->id ?? false;
+        return $is_like_post;
+    }
 }
