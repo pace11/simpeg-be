@@ -94,4 +94,9 @@ class UserController extends ResponseController
         $user = Auth::guard('api')->user();
         return $this->sendResponse($user, 'Get user success');
     }
+
+    public function showById($id) {
+        $user = User::whereId($id)->first();
+        return $this->sendResponse($user, 'Get user profile success');
+    }
 }

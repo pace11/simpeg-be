@@ -6,30 +6,26 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\ResponseController as ResponseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\Likes;
-use App\Models\Posts;
 use App\Models\Notifications;
 use Validator;
 
-class LikesController extends ResponseController
+class NotificationsController extends ResponseController
 {
     /**
      * Display the specified resource. 
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showById($id) {
-        $likes = Likes::with(['user:id,name,email'])
+    public function index() {
+        $user = Auth::guard('api')->user();
+        $notifications = Notifications::with(['user', 'posts'])
+                    ->whereHas('posts', function($q) use($user){
+                        $q->where('users_id', $user->id);
+                    })
                     ->orderBy('updated_at', 'desc')
-                    ->where('users_id', $id)
                     ->get();
-
-        if (!$likes) {
-            return $this->sendError('Not Found', false, 404);
-        }
         
-        return $this->sendResponse($likes, 'Fetch likes success');
+        return $this->sendResponse($notifications, 'Fetch notifications success');
     }
 
     /**
@@ -67,24 +63,5 @@ class LikesController extends ResponseController
         }
 
         return $this->sendResponse($likes, "Like post success", 201);
-    }
-
-    /**
-     * Remove the specific resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function deleteById($id) {
-        $user = Auth::guard('api')->user();
-        $likes = Likes::where('posts_id', $id)
-                    ->where('users_id', $user->id)
-                    ->forceDelete();
-
-        if (!$likes) {
-            return $this->sendError('Not Found', false, 404);
-        }
-        
-        return $this->sendResponse(null, 'Unlikes post success');
     }
 }

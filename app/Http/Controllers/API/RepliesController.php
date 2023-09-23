@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Replies;
 use App\Models\Posts;
+use App\Models\Notifications;
 use Validator;
 
 class RepliesController extends ResponseController
@@ -58,6 +59,15 @@ class RepliesController extends ResponseController
         $input['posts_id'] = $id;
         
         $replies = Replies::create($input);
+
+        if (!$posts->is_own_post) {
+            Notifications::create([
+                "remark" => "reply",
+                "posts_id" => $posts->id,
+                "users_id" => $user->id,
+                "read" => false,
+            ]);
+        }
 
         return $this->sendResponse($replies, "Submit reply success", 201);
     }

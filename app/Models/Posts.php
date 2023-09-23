@@ -23,7 +23,7 @@ class Posts extends Model
         'deleted_at'
     ];
     protected $hidden = [
-        'likes', 'users_id'
+        'likes'
     ];
     protected $appends = ['is_like_post', 'is_own_post'];
 

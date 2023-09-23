@@ -123,4 +123,20 @@ class PostsController extends ResponseController
         
         return $this->sendResponse(null, 'Delete post success');
     }
+
+    /**
+     * Display the specific resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showByUserId($user_id) {
+        $posts = Posts::where("users_id", $user_id)->get();
+
+        if (!$posts) {
+            return $this->sendError('Not Found', false, 404);
+        }
+        
+        return $this->sendResponse($posts, 'Fetch post success');
+    }
 }
