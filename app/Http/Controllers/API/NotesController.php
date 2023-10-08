@@ -14,6 +14,33 @@ class NotesController extends ResponseController
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Get(
+     * path="/api/notes",
+     * tags={"Notes"},
+     * summary="Get notes",
+     * description="Display all data notes",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Fetch notes success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean"),
+     *              @OA\Property(
+     *                  property="data", 
+     *                  type="array",
+     *                  @OA\Items(
+     *                      @OA\Property(property="id", type="string"),
+     *                      @OA\Property(property="title", type="string"),
+     *                      @OA\Property(property="description", type="string"),
+     *                      @OA\Property(property="deleted_at", type="string"),
+     *                      @OA\Property(property="created_at", type="string"),
+     *                      @OA\Property(property="updated_at", type="string")
+     *                  )
+     *              ),
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      )
+     * )
      */
     public function index(Request $request) {
         $notes = Notes::orderBy('updated_at', 'desc')->get();
@@ -26,6 +53,49 @@ class NotesController extends ResponseController
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Get(
+     * path="/api/notes/{note_id}",
+     * tags={"Notes"},
+     * summary="Get note by ID",
+     * description="Display specific note by ID",
+     *  @OA\Parameter(
+     *      description="ID of notes",
+     *      in="path",
+     *      name="note_id",
+     *      required=true,
+     *      example="da9081e0-b20b-4228-a605-4afa34b8e963",
+     *      @OA\Schema(
+     *          type="string",
+     *          format="uuid"
+     *      ),
+     *  ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Fetch notes success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  @OA\Property(property="id", type="string"),
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="description", type="string"),
+     *                  @OA\Property(property="deleted_at", type="string"),
+     *                  @OA\Property(property="created_at", type="string"),
+     *                  @OA\Property(property="updated_at", type="string")
+     *              ),
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", default="false"),
+     *              @OA\Property(property="message", type="string", default="Not Found")
+     *          )
+     *      )
+     * )
      */
     public function showById($id) {
         $notes = Notes::where('id', $id)->first();
@@ -42,6 +112,66 @@ class NotesController extends ResponseController
      *
      * @param  request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Post(
+     * path="/api/notes",
+     * tags={"Notes"},
+     * summary="Create new note",
+     * description="Insert new note data",
+     *  @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="title",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "title":"example title",
+     *                     "description":"example description"
+     *                }
+     *          )
+     *      )
+     *  ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Submit notes success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  @OA\Property(property="id", type="string"),
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="description", type="string"),
+     *                  @OA\Property(property="deleted_at", type="string"),
+     *                  @OA\Property(property="created_at", type="string"),
+     *                  @OA\Property(property="updated_at", type="string")
+     *              ),
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Error Validation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", default="false"),
+     *              @OA\Property(property="message", type="string", default="Error validation"),
+     *              @OA\Property(
+     *                  property="data", 
+     *                  type="object",
+     *                  @OA\Property(property="title", type="array", @OA\Items()),
+     *                  @OA\Property(property="description", type="array", @OA\Items())
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function create(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -66,6 +196,77 @@ class NotesController extends ResponseController
      * @param  request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Patch(
+     * path="/api/notes/update/{note_id}",
+     * tags={"Notes"},
+     * summary="Update note by ID",
+     * description="Modified note data by ID",
+     *  @OA\Parameter(
+     *      description="ID of notes",
+     *      in="path",
+     *      name="note_id",
+     *      required=true,
+     *      example="da9081e0-b20b-4228-a605-4afa34b8e963",
+     *      @OA\Schema(
+     *          type="string",
+     *          format="uuid"
+     *      ),
+     *  ),
+     *  @OA\RequestBody(
+     *      @OA\MediaType(
+     *          mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="title",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="description",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "title":"example title",
+     *                     "description":"example description"
+     *                }
+     *          )
+     *      )
+     *  ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Update notes success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean"),
+     *              @OA\Property(
+     *                  property="data",
+     *                  @OA\Property(property="id", type="string"),
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="description", type="string"),
+     *                  @OA\Property(property="deleted_at", type="string"),
+     *                  @OA\Property(property="created_at", type="string"),
+     *                  @OA\Property(property="updated_at", type="string")
+     *              ),
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Error Validation",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", default="false"),
+     *              @OA\Property(property="message", type="string", default="Error validation"),
+     *              @OA\Property(
+     *                  property="data", 
+     *                  type="object",
+     *                  @OA\Property(property="title", type="array", @OA\Items()),
+     *                  @OA\Property(property="description", type="array", @OA\Items())
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function updateById(Request $request, $id) {
         $validator = Validator::make($request->all(), [
@@ -104,6 +305,40 @@ class NotesController extends ResponseController
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * 
+     * @OA\Delete(
+     * path="/api/notes/delete/{note_id}",
+     * tags={"Notes"},
+     * summary="Get note by ID",
+     * description="Display specific note by ID",
+     *  @OA\Parameter(
+     *      description="ID of notes",
+     *      in="path",
+     *      name="note_id",
+     *      required=true,
+     *      example="da9081e0-b20b-4228-a605-4afa34b8e963",
+     *      @OA\Schema(
+     *          type="string",
+     *          format="uuid"
+     *      ),
+     *  ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Delete notes success",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean"),
+     *              @OA\Property(property="message", type="string")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not Found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", default="false"),
+     *              @OA\Property(property="message", type="string", default="Not Found")
+     *          )
+     *      )
+     * )
      */
     public function deleteById($id) {
         $notes = Notes::whereId($id)->delete();

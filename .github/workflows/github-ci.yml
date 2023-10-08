@@ -21,6 +21,7 @@ jobs:
             cd /var/www/simpeg-be/
             git pull origin master
             composer run-script startup-project
+            php artisan l5-swagger:generate
             php artisan key:generate
   run-build:
     runs-on: ubuntu-latest
@@ -36,4 +37,5 @@ jobs:
           script: |
             cd /var/www/simpeg-be/
             git pull origin master
+            php artisan l5-swagger:generate
             php artisan key:generate
