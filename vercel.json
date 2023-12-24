@@ -16,12 +16,25 @@
         "APP_URL": "https://backend-h4pcivylh-pace11.vercel.app/",
 
         "DB_CONNECTION": "pgsql",
+        "DATABASE_URL": "postgres://default:uiQj0yH2lkvg@ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",  
         "DB_HOST": "ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com",
         "DB_PORT": "5432",
         "DB_DATABASE": "verceldb",
         "DB_USERNAME": "default",
         "DB_PASSWORD": "uiQj0yH2lkvg",
+        
 
-        "L5_SWAGGER_USE_ABSOLUTE_PATH": "true"
+        "L5_SWAGGER_USE_ABSOLUTE_PATH": "true",
+
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp",
+ 
+        "CACHE_DRIVER": "array",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie"
     }
 }
