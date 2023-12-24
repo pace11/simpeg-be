@@ -2,7 +2,7 @@
     "version": 2,
       "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+        "api/index.php": { "runtime": "vercel-php@0.5.3" }
     },
     "routes": [{
         "src": "/(.*)",
@@ -13,16 +13,10 @@
         "APP_ENV": "production",
         "APP_KEY": "base64:2UJTelruQAG4aFvUuiQ8nurGd+A449Gocj4c7M/46Yk=",
         "APP_DEBUG": "true",
-        "APP_URL": "https://backend-h4pcivylh-pace11.vercel.app/",
+        "APP_URL": "https://backend-njcd4weak-pace11.vercel.app",
 
         "DB_CONNECTION": "pgsql",
-        "DATABASE_URL": "postgres://default:uiQj0yH2lkvg@ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb",  
-        "DB_HOST": "ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com",
-        "DB_PORT": "5432",
-        "DB_DATABASE": "verceldb",
-        "DB_USERNAME": "default",
-        "DB_PASSWORD": "uiQj0yH2lkvg",
-        
+        "DATABASE_URL": "postgresql://pace11:SVx82EZdfiGC@ep-lucky-forest-a53uc4t8.us-east-2.aws.neon.tech/service-backend-testing?sslmode=require",
 
         "L5_SWAGGER_USE_ABSOLUTE_PATH": "true",
 
