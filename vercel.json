@@ -1,0 +1,27 @@
+{
+    "version": 2,
+      "framework": null,
+    "functions": {
+        "api/index.php": { "runtime": "vercel-php@0.3.1" }
+    },
+    "routes": [{
+        "src": "/(.*)",
+        "dest": "/api/index.php"
+    }],
+    "env": {
+        "APP_NAME": "Laravel API",
+        "APP_ENV": "production",
+        "APP_KEY": "base64:2UJTelruQAG4aFvUuiQ8nurGd+A449Gocj4c7M/46Yk=",
+        "APP_DEBUG": "true",
+        "APP_URL": "",
+
+        "DB_CONNECTION": "pgsql",
+        "DB_HOST": "ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com",
+        "DB_PORT": 5432,
+        "DB_DATABASE": "verceldb",
+        "DB_USERNAME": "default",
+        "DB_PASSWORD": "uiQj0yH2lkvg",
+
+        "L5_SWAGGER_USE_ABSOLUTE_PATH": "true"
+    }
+}
