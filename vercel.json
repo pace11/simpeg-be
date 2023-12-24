@@ -2,7 +2,7 @@
     "version": 2,
       "framework": null,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.3.1" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [{
         "src": "/(.*)",
@@ -13,7 +13,7 @@
         "APP_ENV": "production",
         "APP_KEY": "base64:2UJTelruQAG4aFvUuiQ8nurGd+A449Gocj4c7M/46Yk=",
         "APP_DEBUG": "true",
-        "APP_URL": "",
+        "APP_URL": "https://backend-h4pcivylh-pace11.vercel.app/",
 
         "DB_CONNECTION": "pgsql",
         "DB_HOST": "ep-hidden-pond-04729856-pooler.us-east-1.postgres.vercel-storage.com",
