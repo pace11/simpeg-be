@@ -13,7 +13,7 @@
         "APP_ENV": "production",
         "APP_KEY": "base64:2UJTelruQAG4aFvUuiQ8nurGd+A449Gocj4c7M/46Yk=",
         "APP_DEBUG": "true",
-        "APP_URL": "https://backend-njcd4weak-pace11.vercel.app",
+        "APP_URL": "https://simpeg-be.vercel.app",
 
         "DB_CONNECTION": "mysql",
         "DB_HOST": "db4free.net",
