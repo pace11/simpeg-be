@@ -19,16 +19,22 @@ class UserController extends ResponseController
             'hobby' => '', 
             'password' => 'required',
         ]);
+        $input = $request->all();
 
         if($validator->fails()){
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        $input = $request->all();
+        $found_user = User::where('email', $input['email']);
+        
+        if ($found_user) {
+            return $this->sendError('The email address you specified is already in use', false, 409);
+        }
+
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
 
-        return $this->sendResponse($user, "Register user success");
+        return $this->sendResponse($found_user, "Register user success");
     }
 
     public function login(Request $request) {
