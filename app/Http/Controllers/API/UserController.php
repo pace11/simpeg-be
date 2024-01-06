@@ -25,7 +25,7 @@ class UserController extends ResponseController
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        $found_user = User::where('email', $input['email']);
+        $found_user = User::where('email', $input['email'])->first();
         
         if ($found_user) {
             return $this->sendError('The email address you specified is already in use', false, 409);
