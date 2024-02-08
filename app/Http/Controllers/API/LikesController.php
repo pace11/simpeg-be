@@ -22,7 +22,7 @@ class LikesController extends ResponseController
     public function showById($id) {
         $likes = Likes::with(['user:id,name,email'])
                     ->orderBy('updated_at', 'desc')
-                    ->where('users_id', $id)
+                    ->where('posts_id', $id)
                     ->get();
 
         if (!$likes) {
