@@ -273,12 +273,18 @@ class NotesController extends ResponseController
             'title' => 'required|max:100',
             'description' => 'required',
         ]);
+        $input = $request->all();
 
         if($validator->fails()){
             return $this->sendError('Error validation', $validator->errors(), 400);       
         }
 
-        Notes::whereId($id)->update($request->all());
+        $payload = [
+            "title" => $input['title'],
+            "description" => $input['description'],
+        ];
+
+        Notes::whereId($id)->update($payload);
         $update = Notes::where('id', $id)->first();
 
         return $this->sendResponse($update, "Update notes success");
