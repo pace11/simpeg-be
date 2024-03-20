@@ -133,7 +133,11 @@ class PostsController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function showByUserId($user_id) {
-        $posts = Posts::where("users_id", $user_id)->get();
+        $posts = Posts::with(['user:id,name,email'])
+                        ->withCount(['likes', 'replies'])
+                        ->orderBy('updated_at', 'desc')
+                        ->where("users_id", $user_id)
+                        ->get();
 
         if (!$posts) {
             return $this->sendError('Not Found', false, 404);
