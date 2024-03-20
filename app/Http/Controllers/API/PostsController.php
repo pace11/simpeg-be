@@ -23,14 +23,16 @@ class PostsController extends ResponseController
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        $user = Auth::guard('api')->user();
+        $user_data = Auth::guard('api')->user();
         $type = $request->query('type');
+        $users_id = $request->query('users_id');
+        $user = $user_id ? $user_id : $user_data->id;
 
-        if ($type == 'me') {
+        if ($type == 'me' || isset($user_id)) {
             $posts = Posts::with(['user:id,name,email'])
                         ->withCount(['likes', 'replies'])
                         ->orderBy('updated_at', 'desc')
-                        ->where('users_id', $user->id)
+                        ->where('users_id', $user)
                         ->get();
         } else {
             $posts = Posts::with(['user:id,name,email'])
