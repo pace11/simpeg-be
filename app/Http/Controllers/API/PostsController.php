@@ -26,9 +26,9 @@ class PostsController extends ResponseController
         $user_data = Auth::guard('api')->user();
         $type = $request->query('type');
         $users_id = $request->query('users_id');
-        $user = $user_id ? $user_id : $user_data->id;
+        $user = $users_id ? $users_id : $user_data->id;
 
-        if ($type == 'me' || isset($user_id)) {
+        if ($type == 'me' || isset($users_id)) {
             $posts = Posts::with(['user:id,name,email'])
                         ->withCount(['likes', 'replies'])
                         ->orderBy('updated_at', 'desc')
