@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->date('dob')->nullable();
-            $table->string('phone', 13)->nullable();
-            $table->text('hobby')->nullable();
+            $table->enum('role', ['admin', 'guest'])->default('guest');
             $table->rememberToken();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();

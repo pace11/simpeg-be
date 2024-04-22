@@ -26,17 +26,27 @@ class JabatanSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'title' => 'KKPI',
-                'created_at' => date('Y-m-d h:i:s'),
-                'updated_at' => date('Y-m-d h:i:s'),
-            ],
-            [
                 'title' => 'Guru Produktif UPW',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
+                'title' => 'Guru Produktif Pemasaran',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru KKPI',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
                 'title' => 'Guru Sejarah',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru PPKN',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
@@ -51,6 +61,11 @@ class JabatanSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
+                'title' => 'Guru Bahasa Jepang',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
                 'title' => 'Guru Matematika',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
@@ -61,7 +76,37 @@ class JabatanSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'title' => 'Guru Bahasa Jepang',
+                'title' => 'Guru BK/BP',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru Penjaskes',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru Agama Kristen Khatolik',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru Agama Islam',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru Agama Kristen',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Guru Ekonomi / Produktif',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ],
+            [
+                'title' => 'Staff Tata Usaha',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('keturunan', function (Blueprint $table) {
             $table->increments('id');
             $table->text('title');
+            $table->text('description')->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });

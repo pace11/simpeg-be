@@ -56,6 +56,7 @@ class KeturunanController extends ResponseController
     public function create(Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'description' => '',
         ]);
 
         if($validator->fails()){
@@ -77,6 +78,7 @@ class KeturunanController extends ResponseController
     public function updateById(Request $request, $id) {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
+            'description' => '',
         ]);
 
         if($validator->fails()){

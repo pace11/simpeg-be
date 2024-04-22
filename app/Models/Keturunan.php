@@ -14,7 +14,7 @@ class Keturunan extends Model
     protected $table = 'keturunan';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id', 'title',
+        'id', 'title', 'description'
     ];
     protected $guard = [
         'created_at', 'updated_at'
