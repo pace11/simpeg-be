@@ -19,7 +19,7 @@ class PegawaiSeeder extends Seeder
     {
         \DB::table('pegawai')->insert([
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Sri Christyani, S.Pd.M.Pd',
                 'tempat_lahir' => 'Surabaya',
                 'tanggal_lahir' => new Carbon('1964-03-10'),
@@ -39,7 +39,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Greytie J Wongkaren, S.Pd',
                 'tempat_lahir' => 'Manado',
                 'tanggal_lahir' => new Carbon('1981-08-18'),
@@ -59,7 +59,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Merry Losba, SE',
                 'tempat_lahir' => 'Abepura',
                 'tanggal_lahir' => new Carbon('1980-05-07'),
@@ -79,7 +79,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Saferiana Boseke, S.Pd',
                 'tempat_lahir' => 'Woloam Tiga',
                 'tanggal_lahir' => new Carbon('1973-04-04'),
@@ -99,7 +99,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Setia Suci Mulyati, SE,MM',
                 'tempat_lahir' => 'Jember',
                 'tanggal_lahir' => new Carbon('1968-08-15'),
@@ -119,7 +119,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Elyzabeth Dwi Victoria Demetouw, S.Th',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => new Carbon('1984-01-08'),
@@ -139,7 +139,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Alberth Gunawan, S.Pd',
                 'tempat_lahir' => 'Jayapura',
                 'tanggal_lahir' => new Carbon('1984-01-09'),
@@ -159,7 +159,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Selfie',
                 'tempat_lahir' => 'Bitung',
                 'tanggal_lahir' => new Carbon('1968-09-22'),
@@ -179,7 +179,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'James Matheos Salaki',
                 'tempat_lahir' => 'Makassar',
                 'tanggal_lahir' => new Carbon('1967-06-23'),
@@ -199,7 +199,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Tyas Waluyo, S.Pd.I',
                 'tempat_lahir' => 'Grobogan',
                 'tanggal_lahir' => new Carbon('1983-12-07'),
@@ -219,7 +219,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Daryunah, S.Ag',
                 'tempat_lahir' => 'Karang Anyar',
                 'tanggal_lahir' => new Carbon('1968-06-29'),
@@ -239,7 +239,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Hana Bunga, S.IP',
                 'tempat_lahir' => 'Lempo Poton',
                 'tanggal_lahir' => new Carbon('1965-10-02'),
@@ -259,7 +259,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Drs. Sutoto, M.T',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => new Carbon('1966-04-03'),
@@ -279,7 +279,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Joelliarti, S.IP',
                 'tempat_lahir' => 'Mojokerto',
                 'tanggal_lahir' => new Carbon('1964-07-14'),
@@ -299,7 +299,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Risma Sibarani, SE,MM',
                 'tempat_lahir' => 'Ujung Tanduk',
                 'tanggal_lahir' => new Carbon('1976-08-14'),
@@ -319,7 +319,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Dra. Sri Sunarti',
                 'tempat_lahir' => 'Purworejo',
                 'tanggal_lahir' => new Carbon('1968-01-17'),
@@ -339,7 +339,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Elisabeth ArungRuba, S.KM, M.Pd',
                 'tempat_lahir' => 'Manokwari',
                 'tanggal_lahir' => new Carbon('1972-04-08'),
@@ -359,7 +359,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Dina Widi N, S.Pd',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => new Carbon('1969-09-06'),
@@ -379,7 +379,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Sukardi, S.Pd',
                 'tempat_lahir' => 'Dukuh Seti',
                 'tanggal_lahir' => new Carbon('1971-10-03'),
@@ -399,7 +399,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Elia Waromi, S.Pd.M.Pd',
                 'tempat_lahir' => 'Serui',
                 'tanggal_lahir' => new Carbon('1974-07-13'),
@@ -419,7 +419,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Umi Rodliyah, SE.M.Si',
                 'tempat_lahir' => 'Ponorog',
                 'tanggal_lahir' => new Carbon('1977-03-11'),
@@ -439,7 +439,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Hasdetati',
                 'tempat_lahir' => 'Managalu',
                 'tanggal_lahir' => new Carbon('1967-12-03'),
@@ -459,7 +459,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Marthince Ronsumbre, S.Pd',
                 'tempat_lahir' => 'Tiom',
                 'tanggal_lahir' => new Carbon('1981-05-10'),
@@ -479,7 +479,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Zalaita Trikurniawati, S.Pd',
                 'tempat_lahir' => 'Rojipolo',
                 'tanggal_lahir' => new Carbon('1976-07-14'),
@@ -499,7 +499,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Fajiri Audu, S.Pd',
                 'tempat_lahir' => 'Makian',
                 'tanggal_lahir' => new Carbon('1979-05-20'),
@@ -519,7 +519,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Katmiatun',
                 'tempat_lahir' => 'Blitar',
                 'tanggal_lahir' => new Carbon('1973-10-14'),
@@ -539,7 +539,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Delima Tamba, S.Pd',
                 'tempat_lahir' => 'Hanna',
                 'tanggal_lahir' => new Carbon('1971-10-23'),
@@ -559,7 +559,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Urai, SH',
                 'tempat_lahir' => 'Seriti',
                 'tanggal_lahir' => new Carbon('1972-12-08'),
@@ -579,7 +579,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Sitti Aisa, A.Md.Kom',
                 'tempat_lahir' => 'Abepura',
                 'tanggal_lahir' => new Carbon('1976-01-27'),
@@ -599,7 +599,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Hilda Heryanti, SE,M.M',
                 'tempat_lahir' => 'Jayapura',
                 'tanggal_lahir' => new Carbon('1976-09-06'),
@@ -619,7 +619,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Dece Silviana Kondomo, S.Pd',
                 'tempat_lahir' => 'Serui',
                 'tanggal_lahir' => new Carbon('1981-09-06'),
@@ -639,7 +639,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'James Gultom, S.Pd',
                 'tempat_lahir' => 'Amborgang',
                 'tanggal_lahir' => new Carbon('1977-10-28'),
@@ -659,7 +659,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Riskyfitri Purbyansari, S.Pd, M.Pd',
                 'tempat_lahir' => 'Nabira',
                 'tanggal_lahir' => new Carbon('1972-11-04'),
@@ -679,7 +679,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Michel Richard Bukorpioper',
                 'tempat_lahir' => 'Jayapura',
                 'tanggal_lahir' => new Carbon('1972-05-15'),
@@ -699,7 +699,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Marselinus Kepata, S.Ag, M.Hum',
                 'tempat_lahir' => 'Atawolo',
                 'tanggal_lahir' => new Carbon('1975-12-28'),
@@ -719,7 +719,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Yuliana Wulandari, S.pd',
                 'tempat_lahir' => 'Wamena',
                 'tanggal_lahir' => new Carbon('1975-03-04'),
@@ -739,7 +739,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Wahyuni Tri Hastuti, SE',
                 'tempat_lahir' => 'Jakarta',
                 'tanggal_lahir' => new Carbon('1976-06-16'),
@@ -759,7 +759,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Kornelia Kawaitouw, S.Sos,MM',
                 'tempat_lahir' => 'Jayapura',
                 'tanggal_lahir' => new Carbon('1981-09-18'),
@@ -779,7 +779,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Rina Sulistiani, S.Pd',
                 'tempat_lahir' => 'Magetan',
                 'tanggal_lahir' => new Carbon('1981-03-21'),
@@ -799,7 +799,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Paulus Warmetan, S.Pd',
                 'tempat_lahir' => 'Mantembu',
                 'tanggal_lahir' => new Carbon('1985-09-12'),
@@ -819,7 +819,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Leonard Christian Toisuta, S.Pd',
                 'tempat_lahir' => 'Leinitu',
                 'tanggal_lahir' => new Carbon('1975-12-21'),
@@ -839,7 +839,7 @@ class PegawaiSeeder extends Seeder
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
-                'id' => Str::uuid(),
+                'id_uuid' => Str::uuid(),
                 'nama' => 'Rini Rokhmawati, S.Pd',
                 'tempat_lahir' => 'Tegal',
                 'tanggal_lahir' => new Carbon('1979-02-19'),

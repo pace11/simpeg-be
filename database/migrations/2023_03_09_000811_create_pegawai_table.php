@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pegawai', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->bigIncrements('id');
+            $table->uuid('id_uuid')->nullable();
             $table->string('nama', 100)->nullable();
             $table->string('tempat_lahir', 30)->nullable();
             $table->date('tanggal_lahir')->nullable();

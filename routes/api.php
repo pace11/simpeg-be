@@ -10,6 +10,13 @@ use App\Http\Controllers\API\PegawaiController;
 use App\Http\Controllers\API\KeturunanController;
 use App\Http\Controllers\API\PendidikanTerakhirController;
 use App\Http\Controllers\API\SpotifyNotifController;
+use App\Http\Controllers\API\KeluargaController;
+use App\Http\Controllers\API\PekerjaanController;
+use App\Http\Controllers\API\PendidikanController;
+use App\Http\Controllers\API\PendidikanKkController;
+use App\Http\Controllers\API\StatusPerkawinanKkController;
+use App\Http\Controllers\API\StatusHubunganKkController;
+use App\Http\Controllers\API\JenisPekerjaanKkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +92,55 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::patch('pegawai/update/{id}', [PegawaiController::class, 'updateById']);
     Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'deleteById']);
     Route::post('pegawai/restore/{id}', [PegawaiController::class, 'restoreById']);
+
+    // keluarga
+    Route::get('keluarga', [KeluargaController::class, 'index']);
+    Route::get('keluarga/{id}', [KeluargaController::class, 'showById']);
+    Route::post('keluarga', [KeluargaController::class, 'create']);
+    Route::patch('keluarga/update/{id}', [KeluargaController::class, 'updateById']);
+    Route::delete('keluarga/delete/{id}', [KeluargaController::class, 'deleteById']);
+
+    // pekerjaan
+    Route::get('pekerjaan', [PekerjaanController::class, 'index']);
+    Route::get('pekerjaan/{id}', [PekerjaanController::class, 'showById']);
+    Route::post('pekerjaan', [PekerjaanController::class, 'create']);
+    Route::patch('pekerjaan/update/{id}', [PekerjaanController::class, 'updateById']);
+    Route::delete('pekerjaan/delete/{id}', [PekerjaanController::class, 'deleteById']);
+
+    // pendidikan
+    Route::get('pendidikan', [PendidikanController::class, 'index']);
+    Route::get('pendidikan/{id}', [PendidikanController::class, 'showById']);
+    Route::post('pendidikan', [PendidikanController::class, 'create']);
+    Route::patch('pendidikan/update/{id}', [PendidikanController::class, 'updateById']);
+    Route::delete('pendidikan/delete/{id}', [PendidikanController::class, 'deleteById']);
+
+    // pendidikan-kk
+    Route::get('pendidikan-kk', [PendidikanKkController::class, 'index']);
+    Route::get('pendidikan-kk/{id}', [PendidikanKkController::class, 'showById']);
+    Route::post('pendidikan-kk', [PendidikanKkController::class, 'create']);
+    Route::patch('pendidikan-kk/update/{id}', [PendidikanKkController::class, 'updateById']);
+    Route::delete('pendidikan-kk/delete/{id}', [PendidikanKkController::class, 'deleteById']);
+
+    // status-perkawinan-kk
+    Route::get('status-perkawinan-kk', [StatusPerkawinanKkController::class, 'index']);
+    Route::get('status-perkawinan-kk/{id}', [StatusPerkawinanKkController::class, 'showById']);
+    Route::post('status-perkawinan-kk', [StatusPerkawinanKkController::class, 'create']);
+    Route::patch('status-perkawinan-kk/update/{id}', [StatusPerkawinanKkController::class, 'updateById']);
+    Route::delete('status-perkawinan-kk/delete/{id}', [StatusPerkawinanKkController::class, 'deleteById']);
+
+    // status-hubungan-kk
+    Route::get('status-hubungan-kk', [StatusHubunganKkController::class, 'index']);
+    Route::get('status-hubungan-kk/{id}', [StatusHubunganKkController::class, 'showById']);
+    Route::post('status-hubungan-kk', [StatusHubunganKkController::class, 'create']);
+    Route::patch('status-hubungan-kk/update/{id}', [StatusHubunganKkController::class, 'updateById']);
+    Route::delete('status-hubungan-kk/delete/{id}', [StatusHubunganKkController::class, 'deleteById']);
+
+    // jenis-pekerjaan-kk
+    Route::get('jenis-pekerjaan-kk', [JenisPekerjaanKkController::class, 'index']);
+    Route::get('jenis-pekerjaan-kk/{id}', [JenisPekerjaanKkController::class, 'showById']);
+    Route::post('jenis-pekerjaan-kk', [JenisPekerjaanKkController::class, 'create']);
+    Route::patch('jenis-pekerjaan-kk/update/{id}', [JenisPekerjaanKkController::class, 'updateById']);
+    Route::delete('jenis-pekerjaan-kk/delete/{id}', [JenisPekerjaanKkController::class, 'deleteById']);
 
     // spotify notif
     Route::get('spotify-notif', [SpotifyNotifController::class, 'index']);
