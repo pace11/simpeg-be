@@ -25,6 +25,5 @@ class DatabaseSeeder extends Seeder
         $this->call(PendidikanTerakhirSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PegawaiSeeder::class);
-        $this->call(SpotifyNotifSeeder::class);
     }
 }

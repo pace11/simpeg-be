@@ -33,9 +33,6 @@ Route::post('register',  [UserController::class, 'register']);
 Route::post('login',  [UserController::class, 'login']);
 Route::post('forgot-password',  [UserController::class, 'forgotPassword']);
 
-// spotify notif w/o auth
-Route::get('spotify-notif/active', [SpotifyNotifController::class, 'checkActive']);
-
 Route::group(['middleware' => 'auth:api'], function() {
 
     // logout / detail user
@@ -141,12 +138,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('jenis-pekerjaan-kk', [JenisPekerjaanKkController::class, 'create']);
     Route::patch('jenis-pekerjaan-kk/update/{id}', [JenisPekerjaanKkController::class, 'updateById']);
     Route::delete('jenis-pekerjaan-kk/delete/{id}', [JenisPekerjaanKkController::class, 'deleteById']);
-
-    // spotify notif
-    Route::get('spotify-notif', [SpotifyNotifController::class, 'index']);
-    Route::post('spotify-notif', [SpotifyNotifController::class, 'create']);
-    Route::get('spotify-notif/{id}', [SpotifyNotifController::class, 'showById']);
-    Route::patch('spotify-notif/update/{id}', [SpotifyNotifController::class, 'updateById']);
-    Route::post('spotify-notif/deactivate/{id}', [SpotifyNotifController::class, 'deactivateById']);
 
 });

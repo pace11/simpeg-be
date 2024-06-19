@@ -50,6 +50,7 @@
             "@php artisan key:generate --ansi"
         ],
         "startup-project": [
+            "@php artisan key:generate",
             "@php artisan migrate:fresh --seed",
             "@php artisan passport:install"
         ]

@@ -22,6 +22,13 @@ class UserSeeder extends Seeder
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
+            [
+                'email' => 'elia_waromi@smk2.com',
+                'password' => bcrypt('kepsek'),
+                'role' => 'headmaster',
+                'created_at' => date('Y-m-d h:i:s'),
+                'updated_at' => date('Y-m-d h:i:s'),
+            ]
         ]);
     }
 }

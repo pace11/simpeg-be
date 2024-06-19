@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'guest'])->default('guest');
+            $table->enum('role', ['admin', 'guest', 'headmaster'])->default('guest');
             $table->rememberToken();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
