@@ -138,5 +138,4 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('jenis-pekerjaan-kk', [JenisPekerjaanKkController::class, 'create']);
     Route::patch('jenis-pekerjaan-kk/update/{id}', [JenisPekerjaanKkController::class, 'updateById']);
     Route::delete('jenis-pekerjaan-kk/delete/{id}', [JenisPekerjaanKkController::class, 'deleteById']);
-
 });
