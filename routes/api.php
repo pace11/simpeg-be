@@ -17,6 +17,8 @@ use App\Http\Controllers\API\PendidikanKkController;
 use App\Http\Controllers\API\StatusPerkawinanKkController;
 use App\Http\Controllers\API\StatusHubunganKkController;
 use App\Http\Controllers\API\JenisPekerjaanKkController;
+use App\Http\Controllers\API\AbsensiController;
+use App\Http\Controllers\API\AktifitasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,4 +140,19 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('jenis-pekerjaan-kk', [JenisPekerjaanKkController::class, 'create']);
     Route::patch('jenis-pekerjaan-kk/update/{id}', [JenisPekerjaanKkController::class, 'updateById']);
     Route::delete('jenis-pekerjaan-kk/delete/{id}', [JenisPekerjaanKkController::class, 'deleteById']);
+
+    // Absensi
+    Route::get('absensi', [AbsensiController::class, 'index']);
+    Route::get('absensi/filter', [AbsensiController::class, 'indexFilter']);
+    Route::get('absensi/{id}', [AbsensiController::class, 'showById']);
+    Route::post('absensi', [AbsensiController::class, 'create']);
+    Route::patch('absensi/update/{id}', [AbsensiController::class, 'updateById']);
+    Route::delete('absensi/delete/{id}', [AbsensiController::class, 'deleteById']);
+
+    // Aktifitas
+    Route::get('aktifitas', [AktifitasController::class, 'index']);
+    Route::get('aktifitas/{id}', [AktifitasController::class, 'showById']);
+    Route::post('aktifitas', [AktifitasController::class, 'create']);
+    Route::patch('aktifitas/update/{id}', [AktifitasController::class, 'updateById']);
+    Route::delete('aktifitas/delete/{id}', [AktifitasController::class, 'deleteById']);
 });
